@@ -6,9 +6,19 @@ while True:
 
     match user_action:
         case 'add':
-            todo = input("Enter a todo: ")
+            todo = input("Enter a todo: ") + "\n"
+
+            file = open('todos.txt', 'r')
+            todos = file.readlines()
             todos.append(todo)
+            file.close()
+            file = open('todos.txt', 'w')
+            file.writelines(todos)
+            file.close()
         case 'show':
+            file = open('todos.txt', 'r')
+            todos = file.readlines()
+            file.close()
             for index, item in enumerate(todos):
                 row = f"{index+1}-{item}"
                 print(row)
